@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Guru — Kuis Edu</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Dashboard Guru</h1>
+    <a href="index.html" class="btn-kecil">← Beranda</a>
+  </header>
+
+  <main class="container">
+    <!-- ===== MAPEL ===== -->
+    <section class="card">
+      <h2>1. Mapel</h2>
+	        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <button id="btnExport" class="btn" style="background: #eab308; flex: 1;">Export Data (JSON)</button>
+        <button id="btnImport" class="btn" style="background: #6b7280; flex: 1;">Import Data</button>
+        <input type="file" id="fileImport" accept=".json" style="display: none;" />
+      </div>
+      <div class="baris">
+        <input type="text" id="inputMapel" placeholder="Nama mapel (mis. Matematika)" />
+        <button id="btnTambahMapel" class="btn">Tambah</button>
+      </div>
+      <ul id="daftarMapel" class="daftar"></ul>
+      <p id="kuotaInfo" class="info"></p>
+    </section>
+
+    <!-- ===== INPUT SOAL ===== -->
+    <section class="card">
+      <h2>2. Input Soal</h2>
+
+      <label>Mapel</label>
+      <select id="pilihMapelSoal"></select>
+
+      <label>Tipe Soal</label>
+      <select id="tipeSoal">
+        <option value="pg">Pilihan Ganda</option>
+        <option value="essay">Essay</option>
+      </select>
+
+      <label>Pertanyaan</label>
+      <textarea id="teksSoal" rows="3" placeholder="Tulis pertanyaan..."></textarea>
+
+      <!-- Gambar -->
+      <label>Gambar (opsional)</label>
+      <div class="baris">
+        <input type="text" id="gambarLink" placeholder="Tempel link gambar (https://...)" />
+        <input type="file" id="gambarFile" accept="image/*" />
+      </div>
+      <div id="previewGambar" class="preview"></div>
+
+      <!-- Khusus PG -->
+      <div id="blokPG">
+        <label>Opsi Jawaban</label>
+        <div class="opsi-baris"><input type="radio" name="kunci" value="0" /><input type="text" class="opsiInput" placeholder="Opsi A" /></div>
+        <div class="opsi-baris"><input type="radio" name="kunci" value="1" /><input type="text" class="opsiInput" placeholder="Opsi B" /></div>
+        <div class="opsi-baris"><input type="radio" name="kunci" value="2" /><input type="text" class="opsiInput" placeholder="Opsi C" /></div>
+        <div class="opsi-baris"><input type="radio" name="kunci" value="3" /><input type="text" class="opsiInput" placeholder="Opsi D" /></div>
+        <p class="info">Pilih radio di kiri untuk menandai kunci jawaban benar.</p>
+      </div>
+
+      <!-- Khusus Essay -->
+      <div id="blokEssay" style="display:none">
+        <label>Kata Kunci Jawaban (pisahkan dengan koma)</label>
+        <input type="text" id="keywordsEssay" placeholder="mis. fotosintesis, klorofil, cahaya" />
+        <p class="info">Jawaban dianggap benar jika memuat kata kunci ini.</p>
+      </div>
+
+      <label>Poin</label>
+      <input type="number" id="poinSoal" value="10" min="1" />
+
+      <button id="btnSimpanSoal" class="btn btn-utama">Simpan Soal</button>
+    </section>
+
+    <!-- ===== DAFTAR SOAL ===== -->
+    <section class="card">
+      <h2>3. Daftar Soal</h2>
+      <select id="filterMapelSoal"></select>
+      <div id="daftarSoal"></div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/guru.js"></script>
+</body>
+</html>
